@@ -184,24 +184,24 @@ for frame in camera.capture_continuous(rawCapture,format = "bgr",use_video_port 
     # Image used to draw things on!
         imgTrack = imgBGR.copy()
     
-    # Blur the image to reduce edges caused by noise or that are useless to us.
-        imgBlur = cv2.GaussianBlur(imgBGR,(blurSize,blurSize),0)
-        #cv2.imshow("gassianed",imgBlur)
-    # Transform BGR to HSV to avoid lighting issues.
-        imgHSV = cv2.cvtColor(imgBlur, cv2.COLOR_BGR2HSV)	
+    # # Blur the image to reduce edges caused by noise or that are useless to us.
+    #     imgBlur = cv2.GaussianBlur(imgBGR,(blurSize,blurSize),0)
+    #     #cv2.imshow("gassianed",imgBlur)
+    # # Transform BGR to HSV to avoid lighting issues.
+    #     imgHSV = cv2.cvtColor(imgBlur, cv2.COLOR_BGR2HSV)	
     
-    # Threshold the image using the selected lower and upper bounds of the color of the object.
-        mask = cv2.inRange(imgHSV, lower, upper)
-        cv2.imshow("masked",mask)
-    # To get rid of noise and fill in gaps in our object use open and close.
-        imgMorphOps = morphOps(mask, morphOpSize)
+    # # Threshold the image using the selected lower and upper bounds of the color of the object.
+    #     mask = cv2.inRange(imgHSV, lower, upper)
+    #     cv2.imshow("masked",mask)
+    # # To get rid of noise and fill in gaps in our object use open and close.
+    #     imgMorphOps = morphOps(mask, morphOpSize)
 
 
-        centers = findObjects(imgMorphOps)
+    #     centers = findObjects(imgMorphOps)
         #print(centers)
         #print(width)
-        if len(centers)==0:
-                centers.append([width//2,width//2])
+        # if len(centers)==0:
+        #         centers.append([width//2,width//2])
         #motor_center(centers[0][0],width,width/20)
         key = cv2.waitKey(1)
         rawCapture.truncate(0)

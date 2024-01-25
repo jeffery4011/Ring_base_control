@@ -133,6 +133,8 @@ def shrink_procedure():
             current_load = current_load-65536
         print('Current_load')
         print(current_load)
+        print('Time:')
+        print(time)
         if current_load <= shrink_jamming_limit:
             limit_reach +=1
         dxl_comm_result, dxl_error = packetHandler.write4ByteTxRx(portHandler, 1, ADDR_GOAL_VELOCITY, -265)
@@ -164,6 +166,8 @@ def expand_procedure():
         print('Current_load')
         print(current_load)
         time +=1
+        print('Time:')
+        print(time)
         if current_load >= expand_jamming_limit:
             limit_reach +=1
         dxl_comm_result, dxl_error = packetHandler.write4ByteTxRx(portHandler, 1, ADDR_GOAL_VELOCITY, 265)

@@ -1,6 +1,7 @@
 from Shrink_and_expand import One_cycle_Shrink_Expand
 from running_std import read_IMU
 from running_std import IMU_reset
+from Shrink_and_expand import All_stop
 
 if __name__ == '__main__':
     while True:
@@ -10,4 +11,5 @@ if __name__ == '__main__':
                 IMU_reset()
         except KeyboardInterrupt:
             print('Stop!')
+            All_stop()
             break

@@ -175,7 +175,7 @@ time.sleep(0.1)
 
 for frame in camera.capture_continuous(rawCapture,format = "bgr",use_video_port = True):
         image = frame.array
-        image = cv2.rotate(image,-cv2.ROTATE_90_CLOCKWISE)
+        image = cv2.rotate(image,cv2.ROTATE_90_CLOCKWISE)
         cv2.imshow("Frame",image)
         imgBGR = image
 

@@ -155,6 +155,7 @@ def shrink_procedure():
         print('Time:')
         print(time)
         if current_load == 0:
+            print('Reboot!')
             reboot()
         if current_load <= shrink_jamming_limit:
             limit_reach +=1
@@ -190,6 +191,7 @@ def expand_procedure():
         print('Time:')
         print(time)
         if current_load == 0:
+            print('Reboot!')
             reboot()
         if current_load >= expand_jamming_limit:
             limit_reach +=1

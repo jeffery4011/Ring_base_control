@@ -123,7 +123,7 @@ def reboot():
     global ADDR_GOAL_VELOCITY 
     global shrink_jamming_limit
     global time_limit
-    dxl_comm_result, dxl_error = packetHandler_XL.reboot(portHandler, 1)
+    dxl_comm_result, dxl_error = packetHandler.reboot(portHandler, 1)
     dxl_comm_result, dxl_error = packetHandler.write1ByteTxRx(portHandler, 1, ADDR_TORQUE_ENABLE, TORQUE_ENABLE)
     return None
 

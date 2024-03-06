@@ -124,8 +124,10 @@ def reboot():
     global shrink_jamming_limit
     global time_limit
     dxl_comm_result, dxl_error = packetHandler.reboot(portHandler, 1)
-    print(dxl_comm_result)
-    print(dxl_error)
+    if dxl_comm_result != COMM_SUCCESS:
+        print("%s" % packetHandler.getTxRxResult(dxl_comm_result))
+    elif dxl_error != 0:
+        print("%s" % packetHandler.getRxPacketError(dxl_error))
     dxl_comm_result, dxl_error = packetHandler.write1ByteTxRx(portHandler, 1, ADDR_TORQUE_ENABLE, TORQUE_ENABLE)
     return None
 

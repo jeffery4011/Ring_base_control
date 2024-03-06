@@ -177,8 +177,9 @@ def expand_procedure():
     return True
 
 def One_cycle_Shrink_Expand():
-    shrink_procedure()
     expand_procedure()
+    shrink_procedure()
+    
     dxl_comm_result, dxl_error = packetHandler.write4ByteTxRx(portHandler, 1, ADDR_GOAL_VELOCITY, 0)
 
 def All_stop():

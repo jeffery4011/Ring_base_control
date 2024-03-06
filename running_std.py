@@ -18,7 +18,7 @@ if IMU.connected == False:
 IMU.begin()
 reading_index = 0
 std_index = 0
-std_thre = 0.07
+std_thre = 0.1
 
 data_gathered = list()
 

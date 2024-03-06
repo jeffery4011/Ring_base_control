@@ -109,6 +109,12 @@ time_limit = 2e4
 global jamming_stop_limit_time 
 jamming_stop_limit_time = 20
 
+def reboot():
+    dxl_comm_result, dxl_error = packetHandler_XL.reboot(portHandler, 1)
+    dxl_comm_result, dxl_error = packetHandler.write1ByteTxRx(portHandler, 1, ADDR_TORQUE_ENABLE, TORQUE_ENABLE)
+    return None
+
+
 def shrink_procedure():
     print('Shrink')
     global time_limit
@@ -136,8 +142,7 @@ def shrink_procedure():
         print('Time:')
         print(time)
         if current_load == 0:
-            dxl_comm_result, dxl_error = packetHandler_XL.reboot(portHandler, 1)
-            dxl_comm_result, dxl_error = packetHandler.write1ByteTxRx(portHandler, 1, ADDR_TORQUE_ENABLE, TORQUE_ENABLE)
+            reboot()
         if current_load <= shrink_jamming_limit:
             limit_reach +=1
         dxl_comm_result, dxl_error = packetHandler.write4ByteTxRx(portHandler, 1, ADDR_GOAL_VELOCITY, -265)
@@ -172,8 +177,7 @@ def expand_procedure():
         print('Time:')
         print(time)
         if current_load == 0:
-            dxl_comm_result, dxl_error = packetHandler_XL.reboot(portHandler, 1)
-            dxl_comm_result, dxl_error = packetHandler.write1ByteTxRx(portHandler, 1, ADDR_TORQUE_ENABLE, TORQUE_ENABLE)
+            reboot()
         if current_load >= expand_jamming_limit:
             limit_reach +=1
         dxl_comm_result, dxl_error = packetHandler.write4ByteTxRx(portHandler, 1, ADDR_GOAL_VELOCITY, 265)

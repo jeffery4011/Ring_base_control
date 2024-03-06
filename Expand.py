@@ -9,7 +9,7 @@ from Shrink_and_expand import shrink_procedure
 from Shrink_and_expand import All_stop
 
 if __name__ == "__main__":
-    shrink_procedure()
-    # expand_procedure()
+    # shrink_procedure()
+    expand_procedure()
     # dxl_comm_result, dxl_error = packetHandler.write4ByteTxRx(portHandler, 1, ADDR_GOAL_VELOCITY, 0)
     All_stop()

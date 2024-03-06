@@ -110,6 +110,19 @@ global jamming_stop_limit_time
 jamming_stop_limit_time = 20
 
 def reboot():
+    global time_limit
+    global portHandler 
+    global packetHandler
+    global ADDR_TORQUE_ENABLE          
+    global ADDR_GOAL_POSITION          
+    global ADDR_PRESENT_POSITION       
+    global DXL_MINIMUM_POSITION_VALUE 
+    global DXL_MAXIMUM_POSITION_VALUE  
+    global BAUDRATE                    
+    global ADDR_PRO_PRESENT_LOAD       
+    global ADDR_GOAL_VELOCITY 
+    global shrink_jamming_limit
+    global time_limit
     dxl_comm_result, dxl_error = packetHandler_XL.reboot(portHandler, 1)
     dxl_comm_result, dxl_error = packetHandler.write1ByteTxRx(portHandler, 1, ADDR_TORQUE_ENABLE, TORQUE_ENABLE)
     return None

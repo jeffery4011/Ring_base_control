@@ -103,7 +103,7 @@ expand_limit = 0
 global shrink_jamming_limit
 shrink_jamming_limit = -400
 global expand_jamming_limit 
-expand_jamming_limit = 400
+expand_jamming_limit = 700
 global time_limit 
 time_limit = 2e4
 global jamming_stop_limit_time 

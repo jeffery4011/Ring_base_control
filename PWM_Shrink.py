@@ -126,7 +126,7 @@ else:
 
 def Shrink():
     print('Shrink')
-    global time_limit = 5e3
+    global time_limit = 50
     global portHandler 
     global packetHandler
     global ADDR_TORQUE_ENABLE          
@@ -164,4 +164,5 @@ def Shrink():
             current_load = current_load-65536
     return True
 
+Shrink()
 

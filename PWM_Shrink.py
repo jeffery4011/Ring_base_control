@@ -28,6 +28,18 @@ Max_Ring_length = 10000    #14000 # unit 0.1mm
 Min_Ring_length = 5800
 radius = 98
 round_value = 4096
+global shrink_limit 
+shrink_limit = 0
+global expand_limit 
+expand_limit = 0
+global shrink_jamming_limit
+shrink_jamming_limit = -400
+global expand_jamming_limit 
+expand_jamming_limit = 400
+global time_limit 
+time_limit = 5e2
+global jamming_stop_limit_time 
+jamming_stop_limit_time = 20
 
 # Control table address
 if MY_DXL == 'X_SERIES' or MY_DXL == 'MX_SERIES':
@@ -110,4 +122,46 @@ elif dxl_error != 0:
     print("%s" % packetHandler.getRxPacketError(dxl_error))
 else:
     print("Dynamixel has been successfully connected")
+
+
+def Shrink():
+    print('Shrink')
+    global time_limit = 5e3
+    global portHandler 
+    global packetHandler
+    global ADDR_TORQUE_ENABLE          
+    global ADDR_GOAL_POSITION          
+    global ADDR_PRESENT_POSITION       
+    global DXL_MINIMUM_POSITION_VALUE 
+    global DXL_MAXIMUM_POSITION_VALUE  
+    global BAUDRATE                    
+    global ADDR_PRO_PRESENT_LOAD       
+    global ADDR_GOAL_VELOCITY 
+    global shrink_jamming_limit
+
+
+    pwm_value = -80
+    # global time_limit
+    current_load ,dxl_comm_result, dxl_error = packetHandler.read2ByteTxRx(portHandler, 1, ADDR_PRO_PRESENT_LOAD)
+    limit_reach = 0
+    time = 0
+    while limit_reach<jamming_stop_limit_time and time < time_limit :
+        time += 1
+        if current_load>32768:
+            current_load = current_load-65536
+        print('Current_load')
+        print(current_load)
+        print('Time:')
+        print(time)
+        if current_load == 0:
+            print('Reboot!')
+            reboot()
+        if current_load <= shrink_jamming_limit:
+            limit_reach +=1
+        dxl_comm_result, dxl_error = packetHandler.write2ByteTxRx(portHandler, 1, 100, pwm_value)
+        current_load ,dxl_comm_result, dxl_error = packetHandler.read2ByteTxRx(portHandler, 1, ADDR_PRO_PRESENT_LOAD)
+        if current_load>32768:
+            current_load = current_load-65536
+    return True
+
 

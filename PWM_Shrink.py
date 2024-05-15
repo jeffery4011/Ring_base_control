@@ -233,5 +233,17 @@ def Extend():
             current_load = current_load-65536
     return True
 
-Extend()
+def Stop():
+    dxl_comm_result, dxl_error = packetHandler.write2ByteTxRx(portHandler, 1, 100, 0)
+    return True
+
+while True:
+    val = input("Press S to Shrink, E to Extend, Q to Stop")
+    if val == 's':
+        Shrink()
+    if val == 'e':
+        Extend()
+    if val == 'q':
+        Stop()
+
 

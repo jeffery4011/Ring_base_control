@@ -126,7 +126,8 @@ else:
 
 def Shrink():
     print('Shrink')
-    global time_limit = 50
+    global time_limit 
+    time_limit= 50
     global portHandler 
     global packetHandler
     global ADDR_TORQUE_ENABLE          

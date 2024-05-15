@@ -168,7 +168,7 @@ def Shrink():
     global shrink_jamming_limit
 
 
-    pwm_value = -800
+    pwm_value = -400
     # global time_limit
     current_load ,dxl_comm_result, dxl_error = packetHandler.read2ByteTxRx(portHandler, 1, ADDR_PRO_PRESENT_LOAD)
     limit_reach = 0
@@ -192,5 +192,46 @@ def Shrink():
             current_load = current_load-65536
     return True
 
-Shrink()
+def Extend():
+    print('Extend')
+    global time_limit 
+    time_limit= 50
+    global portHandler 
+    global packetHandler
+    global ADDR_TORQUE_ENABLE          
+    global ADDR_GOAL_POSITION          
+    global ADDR_PRESENT_POSITION       
+    global DXL_MINIMUM_POSITION_VALUE 
+    global DXL_MAXIMUM_POSITION_VALUE  
+    global BAUDRATE                    
+    global ADDR_PRO_PRESENT_LOAD       
+    global ADDR_GOAL_VELOCITY 
+    global shrink_jamming_limit
+
+
+    pwm_value = 400
+    # global time_limit
+    current_load ,dxl_comm_result, dxl_error = packetHandler.read2ByteTxRx(portHandler, 1, ADDR_PRO_PRESENT_LOAD)
+    limit_reach = 0
+    time = 0
+    while limit_reach<jamming_stop_limit_time and time < time_limit :
+        time += 1
+        if current_load>32768:
+            current_load = current_load-65536
+        print('Current_load')
+        print(current_load)
+        print('Time:')
+        print(time)
+        if current_load == 0:
+            print('Reboot!')
+            reboot()
+        if current_load <= shrink_jamming_limit:
+            limit_reach +=1
+        dxl_comm_result, dxl_error = packetHandler.write2ByteTxRx(portHandler, 1, 100, pwm_value)
+        current_load ,dxl_comm_result, dxl_error = packetHandler.read2ByteTxRx(portHandler, 1, ADDR_PRO_PRESENT_LOAD)
+        if current_load>32768:
+            current_load = current_load-65536
+    return True
+
+Extend()
 

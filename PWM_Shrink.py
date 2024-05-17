@@ -168,7 +168,7 @@ def Shrink():
     global shrink_jamming_limit
 
 
-    pwm_value = -800
+    pwm_value = -400
     # global time_limit
     current_load ,dxl_comm_result, dxl_error = packetHandler.read2ByteTxRx(portHandler, 1, ADDR_PRO_PRESENT_LOAD)
     limit_reach = 0
@@ -209,7 +209,7 @@ def Extend():
     global shrink_jamming_limit
 
 
-    pwm_value = 800
+    pwm_value = 400
     # global time_limit
     current_load ,dxl_comm_result, dxl_error = packetHandler.read2ByteTxRx(portHandler, 1, ADDR_PRO_PRESENT_LOAD)
     limit_reach = 0

@@ -16,6 +16,6 @@ if __name__ == "__main__":
     # # dxl_comm_result, dxl_error = packetHandler.write4ByteTxRx(portHandler, 1, ADDR_GOAL_VELOCITY, 0)
     # All_stop()
     time= 100
-    while True
+    while True:
         shrink_procedure_determined_time(time)
         expand_procedure_determined_time(time)

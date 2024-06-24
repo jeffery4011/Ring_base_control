@@ -5,8 +5,8 @@ import numpy as np
 import cv2
 import os
 import math
-from Shrink_and_expand import shrink_procedure
-from Shrink_and_expand import All_stop
+# from Shrink_and_expand import shrink_procedure
+# from Shrink_and_expand import All_stop
 from Shrink_and_expand import expand_procedure_determined_time
 from Shrink_and_expand import shrink_procedure_determined_time
 

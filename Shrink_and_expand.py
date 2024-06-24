@@ -270,7 +270,7 @@ def shrink_procedure_determined_time(time_limit):
     global ADDR_PRO_PRESENT_LOAD       
     global ADDR_GOAL_VELOCITY 
     global shrink_jamming_limit
-    global time_limit
+    # global time_limit
     current_load ,dxl_comm_result, dxl_error = packetHandler.read2ByteTxRx(portHandler, 1, ADDR_PRO_PRESENT_LOAD)
     limit_reach = 0
     time = 0
